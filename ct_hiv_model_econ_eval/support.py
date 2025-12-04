@@ -12,40 +12,31 @@ def print_outcomes(sim_outcomes, therapy_name):
     :param therapy_name: the name of the selected therapy
     """
     # mean and confidence interval of patient survival time
-    survival_mean_CI_text = sim_outcomes.statSurvivalTime\
-        .get_formatted_mean_and_interval(interval_type='c',
-                                         alpha=data.ALPHA,
-                                         deci=2)
+    mean_survival_CI_text = sim_outcomes.statSurvivalTime\
+        .get_formatted_mean_and_interval(interval_type='c', alpha=data.ALPHA, deci=2)
 
     # mean and confidence interval text of time to AIDS
-    time_to_HIV_death_CI_text = sim_outcomes.statTimeToAIDS\
-        .get_formatted_mean_and_interval(interval_type='c',
-                                         alpha=data.ALPHA,
-                                         deci=2)
+    mean_time_to_AIDS_CI_text = sim_outcomes.statTimeToAIDS\
+        .get_formatted_mean_and_interval(interval_type='c', alpha=data.ALPHA, deci=2)
 
     # mean and confidence interval text of discounted total cost
-    cost_mean_CI_text = sim_outcomes.statCost\
-        .get_formatted_mean_and_interval(interval_type='c',
-                                         alpha=data.ALPHA,
-                                         deci=0,
-                                         form=',')
+    mean_cost_CI_text = sim_outcomes.statCost\
+        .get_formatted_mean_and_interval(interval_type='c', alpha=data.ALPHA, deci=0, form=',')
 
     # mean and confidence interval text of discounted total utility
-    utility_mean_CI_text = sim_outcomes.statUtility\
-        .get_formatted_mean_and_interval(interval_type='c',
-                                         alpha=data.ALPHA,
-                                         deci=2)
+    mean_utility_CI_text = sim_outcomes.statUtility\
+        .get_formatted_mean_and_interval(interval_type='c', alpha=data.ALPHA, deci=2)
 
     # print outcomes
     print(therapy_name)
-    print("  Estimate of mean survival time and {:.{prec}%} confidence interval:".format(1 - data.ALPHA, prec=0),
-          survival_mean_CI_text)
-    print("  Estimate of mean time to AIDS and {:.{prec}%} confidence interval:".format(1 - data.ALPHA, prec=0),
-          time_to_HIV_death_CI_text)
-    print("  Estimate of discounted cost and {:.{prec}%} confidence interval:".format(1 - data.ALPHA, prec=0),
-          cost_mean_CI_text)
-    print("  Estimate of discounted utility and {:.{prec}%} confidence interval:".format(1 - data.ALPHA, prec=0),
-          utility_mean_CI_text)
+    print("  Average survival time and {:.{prec}%} CI:".format(1 - data.ALPHA, prec=0),
+          mean_survival_CI_text)
+    print("  Average time to AIDS and {:.{prec}%} CI:".format(1 - data.ALPHA, prec=0),
+          mean_time_to_AIDS_CI_text)
+    print("  Average discounted cost and {:.{prec}%} CI:".format(1 - data.ALPHA, prec=0),
+          mean_cost_CI_text)
+    print("  Average discounted utility and {:.{prec}%} CI:".format(1 - data.ALPHA, prec=0),
+          mean_utility_CI_text)
     print("")
 
 
